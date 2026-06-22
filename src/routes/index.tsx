@@ -342,8 +342,8 @@ function Index() {
 
             <div className="grid gap-5 lg:col-span-7">
               {[
-                { q: "They built us a beautiful site in less than 48 hours. It looks more professional than anything we could have gotten from a big agency — for a fraction of the price.", who: "Caribbean Vibes", role: "Restaurant · Acworth, GA" },
-                { q: "Our old website was embarrassing. The new one actually makes us look like the professional shop we are. Customers mention it all the time.", who: "Auto Repair Client", role: "Auto Shop · Cumming, GA" },
+                { q: "They built us a beautiful site in less than 48 hours. It looks more professional than anything we could have gotten from a big agency — for a fraction of the price.", who: "Restaurant Owner", role: "Acworth, GA" },
+                { q: "Our old website was embarrassing. The new one actually makes us look like the professional shop we are. Customers mention it all the time.", who: "Auto Shop Owner", role: "Cumming, GA" },
                 { q: "No contracts, no confusion. They showed me the demo and I was sold. The monthly updates keep everything fresh without me having to lift a finger.", who: "Local Business Owner", role: "Retail · Metro Atlanta" },
               ].map((t) => (
                 <figure key={t.who} className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7">
