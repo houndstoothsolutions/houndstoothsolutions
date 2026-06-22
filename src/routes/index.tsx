@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import logoAsset from "../assets/houndstooth-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
