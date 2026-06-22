@@ -23,16 +23,12 @@ const nav = [
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <a href="#top" className={`flex items-center gap-2 ${className}`}>
-      <div className="grid h-9 w-9 place-items-center rounded-md bg-ink text-cream">
-        <svg viewBox="0 0 16 16" className="h-5 w-5" fill="currentColor" aria-hidden>
-          <path d="M0 0h4v4H0zM4 4h4v4H4zM0 8h4v4H0zM4 12h4v4H4zM8 0h4v4H8zM12 4h4v4h-4zM8 8h4v4H8zM12 12h4v4h-4z" />
-        </svg>
-      </div>
-      <div className="leading-tight">
-        <div className="font-display text-base font-bold tracking-tight text-ink">Houndstooth</div>
-        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Solutions</div>
-      </div>
+    <a href="#top" className={`flex items-center ${className}`}>
+      <img
+        src={logoAsset.url}
+        alt="Houndstooth Solutions"
+        className="h-9 w-auto sm:h-10"
+      />
     </a>
   );
 }
