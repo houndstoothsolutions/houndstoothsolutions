@@ -154,8 +154,8 @@ function Index() {
               </div>
               <ul className="mt-6 space-y-2.5 text-sm">
                 {[
-                  { name: "Caribbean Vibes", status: "Live", live: true },
-                  { name: "Clanton Auto & AC", status: "Live", live: true },
+                  { name: "Restaurant Client", status: "Live", live: true },
+                  { name: "Auto Repair Client", status: "Live", live: true },
                   { name: "New Client", status: "Demo Sent", live: false },
                 ].map((c) => (
                   <li key={c.name} className="flex items-center justify-between border-t border-border/60 pt-2.5">
