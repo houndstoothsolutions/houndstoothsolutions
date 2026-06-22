@@ -277,38 +277,32 @@ function Index() {
         </div>
       </section>
 
-      {/* PORTFOLIO */}
+      {/* INDUSTRIES WE SERVE */}
       <section id="work" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-10">
         <div className="max-w-2xl">
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Our Work</div>
+          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Who We Help</div>
           <h2 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl">
-            Built for real <em className="italic text-primary">local businesses.</em>
+            Built for every kind of <em className="italic text-primary">local business.</em>
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Every site we build is custom — designed around the business, not a template. Here's a sample of what we deliver.
+            We build custom websites for the businesses that keep Atlanta running. No templates, no cookie-cutter designs — every site is made to fit your industry and your customers.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { name: "Caribbean Vibes", loc: "Acworth, GA", desc: "Multi-page restaurant site with real menu, photo gallery, social integration, and Google reviews showcase.", tag: "Restaurant", grad: "from-amber-400 via-orange-500 to-rose-600" },
-            { name: "Clanton Fast Brake Auto", loc: "Cumming, GA", desc: "Professional auto shop site with service listings, customer reviews, hours, and map integration.", tag: "Auto Repair", grad: "from-slate-700 via-slate-800 to-slate-900" },
-            { name: "Your Business Could Be Next", loc: "Metro Atlanta", desc: "We build sites for restaurants, auto shops, salons, contractors, retail stores, and more. Request a free demo today.", tag: "All Industries", grad: "from-primary via-rose-600 to-ink" },
+            { name: "Restaurants & Cafés", desc: "Online menus, photo galleries, reservation links, and review showcases that turn hungry visitors into regulars.", tag: "Food & Beverage" },
+            { name: "Auto Repair & Mechanics", desc: "Service listings, hours, contact forms, and trust-building reviews that bring customers through the bay doors.", tag: "Auto Services" },
+            { name: "Salons, Barbers & Spas", desc: "Booking integration, service menus, galleries, and social proof that fills appointment books.", tag: "Beauty & Wellness" },
+            { name: "Contractors & Home Services", desc: "Project galleries, quote requests, and service pages that make homeowners feel confident calling you.", tag: "Home Services" },
+            { name: "Retail & Boutiques", desc: "Product showcases, store hours, directions, and contact forms that connect local shoppers to your shelves.", tag: "Retail" },
+            { name: "Medical, Dental & Health", desc: "Professional, trustworthy design with patient info, forms, and contact details that put people at ease.", tag: "Health" },
           ].map((c) => (
-            <article key={c.name} className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-card">
-              <div className={`aspect-[4/3] bg-gradient-to-br ${c.grad} relative`}>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_55%)]" />
-                <div className="absolute bottom-4 left-4 right-4 font-display text-2xl font-bold text-white drop-shadow">
-                  {c.name}
-                </div>
+            <article key={c.name} className="group rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-card sm:p-7">
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{c.tag}</span>
               </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{c.tag}</span>
-                  <span className="text-xs text-muted-foreground">{c.loc}</span>
-                </div>
-                <h3 className="mt-3 font-display text-lg font-semibold text-ink">{c.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
-              </div>
+              <h3 className="mt-4 font-display text-xl font-semibold text-ink">{c.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
             </article>
           ))}
         </div>
