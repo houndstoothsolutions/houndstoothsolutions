@@ -40,23 +40,26 @@ function Index() {
     <div id="top" className="min-h-screen bg-background text-foreground">
       {/* NAV */}
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:px-10">
-          <Logo />
-          <nav className="hidden items-center justify-center gap-8 md:flex">
+        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-4 sm:flex sm:flex-wrap sm:justify-between sm:px-6 sm:py-5 lg:px-10">
+          <Logo className="shrink-0" />
+          <nav className="hidden w-full items-center justify-center gap-8 sm:flex sm:w-auto md:gap-10">
             {nav.map((n) => (
-              <a key={n.href} href={n.href} className="text-sm font-medium text-foreground/75 transition hover:text-primary">
+              <a key={n.href} href={n.href} className="text-sm font-medium text-foreground/75 transition hover:text-primary sm:text-base">
                 {n.label}
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
-            <a href="#demo" className="hidden rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:brightness-110 sm:inline-flex">
+          <div className="flex items-center gap-3">
+            <a
+              href="#demo"
+              className="hidden rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:brightness-110 sm:inline-flex"
+            >
               Get a Demo
             </a>
             <button
               aria-label="Toggle menu"
               onClick={() => setMenuOpen((v) => !v)}
-              className="grid h-10 w-10 place-items-center rounded-md border border-border md:hidden"
+              className="grid h-11 w-11 place-items-center rounded-lg bg-primary/10 md:hidden"
             >
               <div className="space-y-1.5">
                 <span className={`block h-0.5 w-5 bg-ink transition ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
@@ -68,13 +71,13 @@ function Index() {
         </div>
         {menuOpen && (
           <div className="border-t border-border bg-background md:hidden">
-            <div className="mx-auto flex max-w-7xl flex-col px-4 py-3">
+            <div className="mx-auto flex max-w-7xl flex-col px-4 py-4">
               {nav.map((n) => (
-                <a key={n.href} href={n.href} onClick={() => setMenuOpen(false)} className="border-b border-border/60 py-3 text-sm font-medium">
+                <a key={n.href} href={n.href} onClick={() => setMenuOpen(false)} className="border-b border-border/60 py-3.5 text-base font-medium">
                   {n.label}
                 </a>
               ))}
-              <a href="#demo" onClick={() => setMenuOpen(false)} className="mt-3 inline-flex items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground">
+              <a href="#demo" onClick={() => setMenuOpen(false)} className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-4 py-3.5 text-base font-semibold text-primary-foreground">
                 Get a Demo
               </a>
             </div>
