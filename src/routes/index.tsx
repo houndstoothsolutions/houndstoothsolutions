@@ -23,11 +23,11 @@ const nav = [
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <a href="#top" className={`flex items-center ${className}`}>
+    <a href="#top" className={`flex min-w-0 items-center ${className}`}>
       <img
         src={logoAsset.url}
         alt="Houndstooth Solutions"
-        className="h-14 w-auto sm:h-16"
+        className="h-16 w-auto sm:h-20"
       />
     </a>
   );
