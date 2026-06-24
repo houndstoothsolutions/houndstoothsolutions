@@ -27,7 +27,7 @@ function Logo({ className = "" }: { className?: string }) {
       <img
         src={logoAsset.url}
         alt="Houndstooth Solutions"
-        className="h-16 w-auto sm:h-20"
+        className="h-20 w-auto sm:h-24"
       />
     </a>
   );
