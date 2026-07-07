@@ -58,7 +58,8 @@
       padding: 10px 22px; border-radius: var(--radius);
       transition: background 0.2s; border: none; cursor: pointer; display: inline-block;
     }
-    .btn-nav:hover { background: var(--crimson-lt); }
+    .btn-nav:hover { background: var(--crimson-lt); transform: translateY(-1px); }
+    .btn-nav { transition: background 0.2s, transform 0.15s; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .hamburger span { width: 22px; height: 1.5px; background: #444; }
     .mobile-nav {
@@ -112,7 +113,7 @@
       padding: 14px 28px; border-radius: var(--radius);
       transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; display: inline-block;
     }
-    .btn-primary:hover { background: var(--crimson-lt); transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--crimson-lt); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,16,46,0.25); }
     .btn-secondary {
       background: transparent; color: var(--black);
       font-size: 0.88rem; font-weight: 600; letter-spacing: 0.02em;
@@ -197,7 +198,8 @@
        HOW IT WORKS
     ═══════════════════════ */
     .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 56px; background: var(--border); }
-    .how-card { background: var(--white); padding: 40px 32px; position: relative; }
+    .how-card { background: var(--white); padding: 40px 32px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .how-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); z-index: 2; }
     .how-card::after { content: ''; position: absolute; top: 40px; right: -1px; width: 1px; height: 24px; background: var(--crimson); }
     .how-card:last-child::after { display: none; }
     .how-num {
@@ -212,7 +214,9 @@
        SERVICES / PRICING
     ═══════════════════════ */
     .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; background: var(--border); }
-    .pricing-card { background: var(--white); padding: 44px 36px; position: relative; }
+    .pricing-card { background: var(--white); padding: 44px 36px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(0,0,0,0.1); }
+    .pricing-card.featured:hover { transform: translateY(-8px) scale(1.015); }
     .pricing-card.featured { background: var(--black); }
     .pricing-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
     .pricing-tag.light { color: rgba(255,255,255,0.35); }
@@ -256,7 +260,10 @@
     ═══════════════════════ */
     .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
     .portfolio-card { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: box-shadow 0.25s; }
-    .portfolio-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.1); }
+    .portfolio-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+    .portfolio-card { transition: box-shadow 0.25s, transform 0.25s; }
+    .portfolio-card .portfolio-preview-inner { transition: transform 0.4s ease; }
+    .portfolio-card:hover .portfolio-preview-inner { transform: scale(1.05); }
     .portfolio-preview { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
     .portfolio-preview-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
     .portfolio-preview.caribbean { background: linear-gradient(135deg, #0d1a12 0%, #1e4d2b 100%); }
@@ -373,7 +380,7 @@
       .nav-logo img { height: 36px; margin: 0; }
       .hero { padding: 120px 24px 80px; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero-right { display: none; }
+      .hero-right { max-width: 460px; margin: 0 auto; }
       .logo-band { padding: 20px 24px; }
       .section { padding: 72px 24px; }
       .how-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
@@ -385,6 +392,9 @@
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
       .footer { padding: 48px 24px 24px; }
       .about-blurb { grid-template-columns: 1fr; gap: 32px; margin-top: 56px; padding-top: 40px; }
+    }
+    @media (max-width: 700px) {
+      .hero-right { display: none; }
     }
     @media (max-width: 600px) {
       .navbar { padding: 0 16px; height: 64px; }
@@ -421,6 +431,29 @@
       .about-stat { padding: 24px 16px; }
       .about-stat-num { font-size: 2.2rem; }
       .about-blurb-title { font-size: 1.6rem; }
+    }
+  
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-stagger.visible .how-card,
+    .reveal-stagger.visible .pricing-card,
+    .reveal-stagger.visible .portfolio-card,
+    .reveal-stagger.visible .testimonial-card,
+    .reveal-stagger.visible .about-stat { opacity: 1; transform: translateY(0); }
+    .reveal-stagger .how-card,
+    .reveal-stagger .pricing-card,
+    .reveal-stagger .portfolio-card,
+    .reveal-stagger .testimonial-card,
+    .reveal-stagger .about-stat { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-stagger.visible .how-card:nth-child(1), .reveal-stagger.visible .pricing-card:nth-child(1), .reveal-stagger.visible .portfolio-card:nth-child(1), .reveal-stagger.visible .testimonial-card:nth-child(1) { transition-delay: 0.05s; }
+    .reveal-stagger.visible .how-card:nth-child(2), .reveal-stagger.visible .pricing-card:nth-child(2), .reveal-stagger.visible .portfolio-card:nth-child(2), .reveal-stagger.visible .testimonial-card:nth-child(2) { transition-delay: 0.15s; }
+    .reveal-stagger.visible .how-card:nth-child(3), .reveal-stagger.visible .pricing-card:nth-child(3), .reveal-stagger.visible .portfolio-card:nth-child(3), .reveal-stagger.visible .testimonial-card:nth-child(3) { transition-delay: 0.25s; }
+    .reveal-stagger.visible .how-card:nth-child(4) { transition-delay: 0.35s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-stagger .how-card, .reveal-stagger .pricing-card, .reveal-stagger .portfolio-card, .reveal-stagger .testimonial-card, .reveal-stagger .about-stat {
+        opacity: 1 !important; transform: none !important; transition: none !important;
+      }
     }
   </style>
 </head>
@@ -470,7 +503,7 @@
     <div class="hero-right">
       <div class="hero-card">
         <div class="hero-card-label">Client Overview — June 2026</div>
-        <div class="hero-card-row"><span>Active client sites</span><strong>19</strong></div>
+        <div class="hero-card-row"><span>Active client sites</span><strong>30</strong></div>
         <div class="hero-card-row"><span>Avg. turnaround time</span><strong>48 hrs</strong></div>
         <div class="hero-divider"></div>
         <div class="hero-card-stat-row">
@@ -478,8 +511,8 @@
           <div class="hero-mini-stat"><div class="v">48<span>h</span></div><div class="k">Avg. build time</div></div>
         </div>
         <div class="hero-card-clients">
-          <div class="hero-card-client-row"><div class="client-dot"></div><span class="client-name">Caribbean Vibes</span><span class="client-status">Live</span></div>
-          <div class="hero-card-client-row"><div class="client-dot"></div><span class="client-name">Clanton Auto & AC</span><span class="client-status">Live</span></div>
+          <div class="hero-card-client-row"><div class="client-dot"></div><span class="client-name">Local Restaurant</span><span class="client-status">Live</span></div>
+          <div class="hero-card-client-row"><div class="client-dot"></div><span class="client-name">Auto Repair Shop</span><span class="client-status">Live</span></div>
           <div class="hero-card-client-row"><div class="client-dot grey"></div><span class="client-name">New Client</span><span class="client-status pending">Demo Sent</span></div>
         </div>
       </div>
@@ -507,9 +540,9 @@
 <section class="section" id="how">
   <div class="container">
     <div class="section-eyebrow">The Process</div>
-    <h2 class="section-title">From idea to live in <em>days — not months.</em></h2>
+    <h2 class="section-title reveal">From idea to live in <em>days — not months.</em></h2>
     <p class="section-sub">We handle everything. You just show up, approve, and go live. No technical knowledge required.</p>
-    <div class="how-grid">
+    <div class="how-grid reveal-stagger">
       <div class="how-card">
         <div class="how-num">01</div>
         <div class="how-line"></div>
@@ -542,9 +575,9 @@
 <section class="section section-off" id="services">
   <div class="container">
     <div class="section-eyebrow">Pricing</div>
-    <h2 class="section-title">Simple pricing. <em>No surprises.</em></h2>
+    <h2 class="section-title reveal">Simple pricing. <em>No surprises.</em></h2>
     <p class="section-sub">Every plan includes a custom-built site, hosting, and ongoing support. Pick the tier that fits your business.</p>
-    <div class="pricing-grid">
+    <div class="pricing-grid reveal-stagger">
       <div class="pricing-card">
         <div class="pricing-tag">Starter</div>
         <div class="pricing-name">Essential</div>
@@ -605,25 +638,25 @@
 <section class="section" id="portfolio">
   <div class="container">
     <div class="section-eyebrow">Our Work</div>
-    <h2 class="section-title">Built for real <em>local businesses.</em></h2>
+    <h2 class="section-title reveal">Built for real <em>local businesses.</em></h2>
     <p class="section-sub">Every site we build is custom — designed around the business, not a template. Here's a sample of what we deliver.</p>
-    <div class="portfolio-grid">
+    <div class="portfolio-grid reveal-stagger">
       <div class="portfolio-card">
         <div class="portfolio-preview caribbean">
-          <div class="portfolio-preview-inner"><span class="portfolio-preview-label">Caribbean Vibes</span></div>
+          <div class="portfolio-preview-inner"><span class="portfolio-preview-label">Restaurant Site</span></div>
         </div>
         <div class="portfolio-info">
-          <h3>Caribbean Vibes — Acworth, GA</h3>
+          <h3>Full-Service Restaurant Website</h3>
           <p>Multi-page restaurant site with real menu, photo gallery, social integration, and Google reviews showcase.</p>
           <span class="portfolio-chip">Restaurant</span>
         </div>
       </div>
       <div class="portfolio-card">
         <div class="portfolio-preview auto">
-          <div class="portfolio-preview-inner"><span class="portfolio-preview-label">Clanton Auto</span></div>
+          <div class="portfolio-preview-inner"><span class="portfolio-preview-label">Auto Repair Site</span></div>
         </div>
         <div class="portfolio-info">
-          <h3>Clanton Fast Brake Auto — Cumming, GA</h3>
+          <h3>Auto Repair Shop Website</h3>
           <p>Professional auto shop site with service listings, customer reviews, hours, and map integration.</p>
           <span class="portfolio-chip">Auto Repair</span>
         </div>
@@ -648,12 +681,12 @@
     <div class="section-eyebrow">Why Houndstooth Solutions</div>
     <h2 class="section-title light">We're local. We're fast. <em style="color:var(--crimson);">We deliver.</em></h2>
     <p class="section-sub light">Based in Metro Atlanta — we know the market, we know the businesses, and we know what it takes to win online locally.</p>
-    <div class="testimonials-grid" style="margin-top:56px;">
+    <div class="testimonials-grid reveal-stagger" style="margin-top:56px;">
       <div class="testimonial-card">
         <div class="testimonial-quote">"</div>
         <p class="testimonial-text">They built us a beautiful site in less than 48 hours. It looks more professional than anything we could have gotten from a big agency — for a fraction of the price.</p>
-        <div class="testimonial-author">Caribbean Vibes</div>
-        <div class="testimonial-role">Restaurant · Acworth, GA</div>
+        <div class="testimonial-author">Restaurant Owner</div>
+        <div class="testimonial-role">Acworth, GA</div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-quote">"</div>
@@ -676,7 +709,7 @@
         <h3 class="about-blurb-title">Built in Metro Atlanta.<br/><em style="color:var(--crimson);">Roll Tide.</em></h3>
         <p class="about-blurb-text">Houndstooth Solutions was founded to give local businesses access to the same quality web presence that big brands have — without the agency price tag or the runaround. We're in your area, we know your market, and we're invested in your success.</p>
       </div>
-      <div class="about-stats-grid">
+      <div class="about-stats-grid reveal-stagger">
         <div class="about-stat"><div class="about-stat-num">48h</div><div class="about-stat-label">Avg. build time</div></div>
         <div class="about-stat"><div class="about-stat-num">$0</div><div class="about-stat-label">Cost to see a demo</div></div>
         <div class="about-stat"><div class="about-stat-num">100%</div><div class="about-stat-label">Custom built</div></div>
@@ -801,6 +834,22 @@
 </footer>
 
 <script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
   document.getElementById('hamburger').addEventListener('click', () => {
     document.getElementById('mobileNav').classList.toggle('open');
   });
