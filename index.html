@@ -165,11 +165,39 @@
     /* ═══════════════════════
        LOGO BAND
     ═══════════════════════ */
-    .logo-band { background: var(--black); padding: 24px 48px; }
-    .logo-band-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-    .logo-band-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); white-space: nowrap; }
-    .logo-band-items { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
-    .logo-band-item { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; }
+    .trust-band { background: var(--black); padding: 56px 0 44px; position: relative; overflow: hidden; }
+    .trust-band::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+    }
+    .trust-head { text-align: center; max-width: 640px; margin: 0 auto 40px; padding: 0 24px; }
+    .trust-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--crimson); margin-bottom: 14px; display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .trust-eyebrow::before, .trust-eyebrow::after { content: ''; width: 24px; height: 1.5px; background: var(--crimson); }
+    .trust-title { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 3vw, 2.15rem); color: #fff; line-height: 1.3; }
+    .trust-title em { color: var(--crimson); font-style: normal; font-weight: 600; }
+    .marquee-wrap {
+      position: relative; width: 100%; overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      margin-bottom: 40px;
+    }
+    .marquee-track { display: flex; width: max-content; animation: marqueeScroll 30s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .trust-pill { display: flex; align-items: center; gap: 10px; padding: 16px 36px; border-right: 1px solid rgba(255,255,255,0.08); white-space: nowrap; }
+    .trust-pill svg { color: var(--crimson); flex-shrink: 0; }
+    .trust-pill-city { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.88); letter-spacing: 0.01em; }
+    .trust-badges { display: flex; align-items: center; justify-content: center; gap: 36px; flex-wrap: wrap; padding: 0 24px; }
+    .trust-badge { display: flex; align-items: center; gap: 9px; }
+    .trust-badge-icon {
+      width: 22px; height: 22px; border-radius: 50%; background: rgba(200,16,46,0.15);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .trust-badge-icon svg { color: var(--crimson); }
+    .trust-badge-label { font-size: 0.84rem; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.01em; }
 
     /* ═══════════════════════
        SECTION DEFAULTS
@@ -381,7 +409,8 @@
       .hero { padding: 120px 24px 80px; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .hero-right { max-width: 460px; margin: 0 auto; }
-      .logo-band { padding: 20px 24px; }
+      .trust-band { padding: 44px 0 32px; }
+      .trust-pill { padding: 14px 24px; }
       .section { padding: 72px 24px; }
       .how-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
       .how-card::after { display: none; }
@@ -409,9 +438,10 @@
       .hero-btns .btn-secondary { width: 100%; text-align: center; padding: 15px 20px; }
       .hero-proof { gap: 20px; flex-wrap: wrap; }
       .hero-proof-item .n { font-size: 1.8rem; }
-      .logo-band { padding: 16px; }
-      .logo-band-inner { flex-direction: column; gap: 12px; }
-      .logo-band-items { gap: 20px; flex-wrap: wrap; }
+      .trust-band { padding: 36px 0 28px; }
+      .trust-pill { padding: 12px 18px; }
+      .trust-badges { gap: 18px; }
+      .trust-badge-label { font-size: 0.78rem; }
       .section { padding: 56px 16px; }
       .section-title { font-size: 1.9rem; }
       .how-grid { grid-template-columns: 1fr; }
@@ -521,18 +551,32 @@
   </div>
 </section>
 
-<!-- LOGO BAND -->
-<div class="logo-band">
-  <div class="logo-band-inner">
-    <span class="logo-band-label">Serving businesses in</span>
-    <div class="logo-band-items">
-      <span class="logo-band-item">Acworth, GA</span>
-      <span class="logo-band-item">Kennesaw, GA</span>
-      <span class="logo-band-item">Marietta, GA</span>
-      <span class="logo-band-item">Cumming, GA</span>
-      <span class="logo-band-item">Canton, GA</span>
-      <span class="logo-band-item">Metro Atlanta</span>
+<!-- TRUST BAND -->
+<div class="trust-band">
+  <div class="trust-head reveal">
+    <div class="trust-eyebrow">Locally Owned &amp; Operated</div>
+    <h2 class="trust-title">Proudly serving local businesses across <em>Metro Atlanta.</em></h2>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Acworth, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Kennesaw, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Marietta, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Cumming, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Canton, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Metro Atlanta</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Acworth, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Kennesaw, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Marietta, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Cumming, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Canton, GA</span></div>
+      <div class="trust-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span class="trust-pill-city">Metro Atlanta</span></div>
     </div>
+  </div>
+  <div class="trust-badges reveal">
+    <div class="trust-badge"><div class="trust-badge-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><span class="trust-badge-label">Locally Owned & Operated</span></div>
+    <div class="trust-badge"><div class="trust-badge-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><span class="trust-badge-label">No Long-Term Contracts</span></div>
+    <div class="trust-badge"><div class="trust-badge-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><span class="trust-badge-label">48-Hour Demo Turnaround</span></div>
   </div>
 </div>
 
@@ -789,7 +833,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="f-logo">
-        <img src="https://base44.app/api/apps/6a2cb32108188b55c8894a42/files/mp/public/6a2cb32108188b55c8894a42/1867d8f22_logo_dark_cropped.png" alt="Houndstooth Solutions" />
+        <img src="https://base44.app/api/apps/6a2cb32108188b55c8894a42/files/mp/public/6a2cb32108188b55c8894a42/1f0ef9bd4_logo_dark_transparent.png" alt="Houndstooth Solutions" />
       </div>
       <p>Professional websites for local businesses in Metro Atlanta and surrounding areas. Custom-built, fast, and built to grow your business.</p>
       <div class="footer-social">
