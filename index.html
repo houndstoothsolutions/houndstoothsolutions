@@ -485,9 +485,36 @@
         opacity: 1 !important; transform: none !important; transition: none !important;
       }
     }
+  
+    /* Cookie notice */
+    #cookie-notice {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+      background: #1a1a1a; border-top: 2px solid var(--crimson);
+      padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
+      transform: translateY(0); transition: transform 0.4s ease;
+    }
+    #cookie-notice.hidden { transform: translateY(110%); }
+    #cookie-notice p { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0; max-width: 680px; }
+    #cookie-notice p a { color: var(--crimson); text-decoration: underline; }
+    #cookie-notice-accept {
+      background: var(--crimson); color: #fff; border: none; border-radius: 4px;
+      padding: 9px 22px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.2s;
+    }
+    #cookie-notice-accept:hover { background: #a50d25; }
+    @media (max-width: 600px) {
+      #cookie-notice { padding: 14px 18px; }
+      #cookie-notice p { font-size: 0.78rem; }
+    }
   </style>
 </head>
 <body>
+<div id="cookie-notice" role="dialog" aria-label="Cookie Notice">
+  <p>We use Google Fonts, which may set limited cookies for CDN delivery. We don't use tracking or advertising cookies. By continuing to use this site, you accept our <a href="privacy.html">Privacy Policy</a>.</p>
+  <button id="cookie-notice-accept" onclick="document.getElementById('cookie-notice').classList.add('hidden');localStorage.setItem('cookie-accepted','1');">Got It</button>
+</div>
+
 
 <!-- NAV -->
 <nav class="navbar">
@@ -821,6 +848,9 @@
           <label>Anything else we should know?</label>
           <textarea name="message" placeholder="Tell us about your business, current website situation, or any questions you have..."></textarea>
         </div>
+        <p style="font-size:0.78rem;color:#888;line-height:1.5;margin-bottom:12px;">
+          By submitting this form, you agree to be contacted by Houndstooth Solutions about our services. We will never sell or share your information. View our <a href="privacy.html" style="color:var(--crimson);text-decoration:underline;" target="_blank">Privacy Policy</a>.
+        </p>
         <button type="submit" class="form-submit">Request My Free Demo</button>
         <p class="form-fine">No commitment required. We'll reach out within 24 hours.</p>
       </form>
@@ -873,7 +903,11 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Houndstooth Solutions — Metro Atlanta, GA</span>
-    <span>Roll Tide.</span>
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center;">
+      <a href="privacy.html" style="color:rgba(255,255,255,0.4);font-size:0.78rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+      <a href="terms.html" style="color:rgba(255,255,255,0.4);font-size:0.78rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Terms of Service</a>
+      <span style="color:rgba(255,255,255,0.2);">Roll Tide.</span>
+    </div>
   </div>
 </footer>
 
@@ -957,6 +991,11 @@
   if (window.innerWidth <= 768) {
     document.getElementById('mobileCTA').style.display = 'block';
     document.body.style.paddingBottom = '60px';
+  }
+</script>
+<script>
+  if (localStorage.getItem('cookie-accepted')) {
+    document.getElementById('cookie-notice').classList.add('hidden');
   }
 </script>
 </body>
